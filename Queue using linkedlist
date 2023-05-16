@@ -1,0 +1,94 @@
+import java.util.Scanner;
+class stack{
+	int n=10;
+	int f=-1,r=-1;
+	int q[]=new int[n];
+	
+	void enqueue() {
+		if(f== (r+1)%n) {
+			System.out.println("overflow ");
+		}
+		else {
+			System.out.println("enter the data");
+			Scanner sc = new Scanner(System.in);
+			int i=sc.nextInt();
+			if(f==-1 && r==-1) {
+				f=0;
+				r=0;
+				q[r]=i;
+			}
+			else {
+				r=(r+1)%n;
+				q[r]=i;
+			}
+			
+				
+		}
+	}
+		void dequeue() {
+			if(f==-1 && r==-1) {
+				System.out.println("underflow");
+			}
+			else if(f==r) {
+				
+				System.out.println("underflow");
+				f=-1;
+				r=-1;
+			}
+			else {
+				f=(f+1);
+			}
+			
+		
+	}
+		void display() {
+			int i;
+			System.out.println("for the display");
+			for( i=f;i!=r;i=(i+1)%n) {
+				System.out.print(q[i]);
+			
+			
+			}
+			System.out.print(q[i]);
+		}
+}
+public class Queue_usingCircularLinkedlist {
+
+	public static void main(String[] args) {
+		int d;
+		stack s = new stack();
+		Scanner sc = new Scanner(System.in);
+		int l;
+		do {
+			System.out.println("for the push 1");
+			System.out.println("for the pop 2");
+			System.out.println("for the dispaly");
+			d=sc.nextInt();
+			switch(d) {
+			case 1:
+			{
+				s.enqueue();
+				break;
+			}
+			case 2:
+			{
+				s.dequeue();
+				break;
+			}
+			case 3:
+			{
+				s.display();
+				break;
+			}
+			}
+			System.out.println("for the main menu 0");
+			System.out.println("for the exist press any key");
+			l=sc.nextInt();
+		}
+		while(l==0);
+		System.out.println("successfully");
+		
+		
+		}
+
+}
