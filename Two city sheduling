@@ -1,0 +1,28 @@
+class Solution {
+    public static int twoCitySchedCost(int[][] costs) {
+        int len = costs.length;
+        int[][] diff = new int[len][2];
+        for (int i = 0; i < len; i++) {
+            diff[i][0] = i;
+            diff[i][1] = costs[i][0] - costs[i][1];
+        }
+
+        Arrays.sort(diff, (o1, o2) -> {
+            if (o1[1] == o2[1]) {
+                return o1[0] - o2[0];
+            }
+            return o1[1] - o2[1];
+        });
+
+        int ans = 0;
+        for (int i = 0; i < len / 2; i++) {
+            ans += costs[diff[i][0]][0];
+        }
+
+        for (int i = len / 2; i < len; i++) {
+            ans += costs[diff[i][0]][1];
+        }
+
+        return ans;
+    }
+}
