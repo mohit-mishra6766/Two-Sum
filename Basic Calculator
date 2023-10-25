@@ -1,0 +1,36 @@
+class Solution {
+    public int calculate(String s) {
+        int[] ans = calculate(s.toCharArray(), 0);
+        return ans[0];
+    }
+    
+    public int[] calculate(char[] arr, int i) {        
+        int curr = 0;
+        int res = 0;
+        char prevOp = '+';
+        
+        for(;i<arr.length && arr[i]!=')'; i++){
+            // calculating the number 
+            if(Character.isDigit(arr[i]))
+                curr = curr*10 + (arr[i]-'0');
+            // calling the function again to provide evaluation for expression inside () -- Recursion
+            else if(arr[i] == '('){
+                int[] ans = calculate(arr, i+1);
+                curr = ans[0];
+                i = ans[1];
+            }
+            //this will add the curr number to result 
+            // the OR statement making sure last number is not missed 
+            if(i<arr.length && ((!Character.isDigit(arr[i]) && !Character.isWhitespace(arr[i])) || (i == arr.length - 1 || arr[i+1] ==')'))){
+                if(prevOp == '+'){
+                    res += curr;
+                }else{
+                    res -= curr;
+                }
+                prevOp = arr[i];
+                curr = 0;
+            }
+        }
+        return new int[] {res, i}; // returning answer for () and last index
+    }
+}
