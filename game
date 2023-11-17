@@ -1,0 +1,50 @@
+
+
+//User function Template for Java
+
+
+
+//User function Template for Java
+/*
+Node defined as
+class Node{
+    int data;
+    Node left,right;
+    Node(int d){
+        data=d;
+        left=right=null;
+    }
+}
+*/
+class Solution
+{ 
+    Node head = null, prev = null;
+    
+    Node bTreeToClist(Node root)
+    {
+        inorder(root);
+        head.left = prev;
+        prev.right = head;
+
+        return head;
+    }
+
+    void inorder(Node curr) {
+        if (curr == null)
+            return;
+
+        inorder(curr.left);
+
+        if (head == null)
+            head = prev = curr;
+        else {
+            prev.right = curr;
+            curr.left = prev;
+        }
+        
+        prev = curr;
+        inorder(curr.right);
+    }
+    
+}
+    
