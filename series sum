@@ -1,0 +1,13 @@
+class Solution
+{
+    public:
+    string reverseWord(string str)
+    {
+        string rstr;
+        for(auto it = str.rbegin(); it!=str.rend(); it++){
+            rstr += *it;
+        }
+        
+        return rstr;
+    }
+};
