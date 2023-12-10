@@ -1,0 +1,41 @@
+
+
+/*
+class Node
+    {
+        int data;
+        Node next;
+        Node(int d) {data = d; next = null; }
+    }
+*/
+
+class GfG
+{
+    //Function to remove duplicates from sorted linked list.
+    Node removeDuplicates(Node head)
+    {
+	// Your code here
+	if(head==null || head.next==null){
+            return head;
+        }
+        
+        
+        Node temp=head;
+        Node  curr=head.next;
+        
+        while(temp.next!=null && curr!=null){
+            
+            while(curr!=null){
+                if(temp.data==curr.data){
+                    temp.next=curr.next;
+                    curr=curr.next;
+                }else{                    //temp.data!=curr.data
+                    temp=temp.next;
+                    curr=curr.next;
+                }
+            }
+        }
+        return head;
+
+    }
+}
