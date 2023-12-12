@@ -1,0 +1,59 @@
+
+
+//User function Template for Java
+
+/*
+class Node{
+    int data;
+    Node left;
+    Node right;
+    Node(int data){
+        this.data = data;
+        left=null;
+        right=null;
+    }
+}
+*/
+class Pair {
+    Node node;
+    int l;
+    public Pair(Node node,int l) {
+        this.node=node;
+        this.l=l;
+    }
+}
+class Solution {
+    static ArrayList<Integer> topView(Node root) {
+        
+        // T.C. -> O(n+n)
+        // A.S. -> O(n*2+n*2)
+        
+        Map<Integer,Integer> mp=new TreeMap<>();
+        Queue<Pair> q=new LinkedList<>();
+        Pair p=new Pair(root,0);
+        q.offer(p);
+        while(q.isEmpty()!=true) {
+            Pair pp=q.peek();
+            Node node=pp.node;
+            int l=pp.l;
+            q.poll();
+            if(mp.containsKey(l)!=true) {
+                mp.put(l,node.data);
+            }
+            if(node.left!=null) {
+                Pair pl=new Pair(node.left,l-1);
+                q.offer(pl);
+            }
+            if(node.right!=null) {
+                Pair pr=new Pair(node.right,l+1);
+                q.offer(pr);
+            }
+        }
+        ArrayList<Integer> ans=new ArrayList<>();
+        for(Map.Entry<Integer,Integer> pair:mp.entrySet()) {
+            int val=pair.getValue();
+            ans.add(val);
+        }
+        return ans;
+    }
+}
