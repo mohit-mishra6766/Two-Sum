@@ -1,0 +1,17 @@
+
+class Solution {
+    public long count(int coins[], int N, int sum) {
+        // code here. 
+        long[] ways = new long[sum+1];
+        ways[0] = 1;
+        for (int i=0;i < N;i++){
+            for (int j=0; j<=sum; j++){
+                
+                if (coins[i] <= j){
+                    ways[(int)j] += ways[(int)j - coins[i]];
+                }
+            }
+        } 
+        return ways[(int)sum];
+    }
+}
