@@ -1,0 +1,14 @@
+
+class Solution {
+    public static void convertToWave(int n, int[] a) {
+        // code here
+        int t=0;
+        for(int i=0;i<n-1;i+=2)
+        {
+            t=a[i];
+            a[i]=a[i+1];
+            a[i+1]=t;
+        }
+    }
+}
+ 
