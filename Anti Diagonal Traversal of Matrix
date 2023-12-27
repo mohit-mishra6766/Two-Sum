@@ -1,0 +1,38 @@
+
+class Solution
+{
+    public int[] antiDiagonalPattern(int[][] matrix)
+    {
+        // Code here
+        int n=matrix.length;
+        int a[]=new int[n*n];
+        int p=0;
+        for(int i=0;i<n-1;i++)
+        {
+            int row=0;
+            for(int j=i;j>=0;j--)
+            {
+                a[p++]=matrix[row][j];
+                row++;
+            }
+        }
+        int i=0,j=n-1;
+        while(i<n&&j>=0)
+        {
+            a[p++]=matrix[i][j];
+            i++;
+            j--;
+        }
+        for(i=1;i<n;i++)
+        {
+            int col=n-1;
+            for(j=i;j<n;j++)
+            {
+                a[p++]=matrix[j][col];
+                col--;
+            }
+        }
+        return a;
+        
+    }
+}
