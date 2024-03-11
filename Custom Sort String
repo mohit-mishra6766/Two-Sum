@@ -1,0 +1,38 @@
+class Solution {
+    public String customSortString(String order, String s) {
+        HashMap<Character,Integer> m=new HashMap<>();
+        for(int i=0;i<s.length();i++)
+        {
+            m.put(s.charAt(i),m.getOrDefault(s.charAt(i),0)+1);
+        }
+        List<Character> l=new ArrayList<>();
+        for(int i=0;i<s.length();i++)
+        {
+            l.add(s.charAt(i));
+        }
+        String ans="";
+        for(int i=0;i<order.length();i++)
+        {
+            if(l.contains(order.charAt(i)))
+            {
+               int count=m.get(order.charAt(i));
+               while(count!=0)
+               {
+                   ans+=order.charAt(i);
+                   count--;
+               }   
+            }
+                
+        }
+
+        for(int i=0;i<s.length();i++)
+        {
+            if(order.contains(s.charAt(i)+"")==false)
+            {
+                ans+=s.charAt(i);
+            }
+        }
+
+       return ans;
+    }
+}
