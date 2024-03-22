@@ -1,0 +1,45 @@
+class Solution {
+    public boolean isPalindrome(ListNode head) {
+
+        // 1. find the count of nodes and middle 
+        int nodesCount = 0;
+        ListNode headForCount = head;
+        while (headForCount != null) {
+            headForCount = headForCount.next;
+            nodesCount++;
+        }
+        int nodesMiddle = nodesCount / 2;
+        
+        // 2. reverse till middle
+        ListNode nodesForward = head;
+        ListNode nodesBackward = null;
+        ListNode storedNextNode = null;
+
+        while (nodesMiddle != 0) {
+            nodesMiddle--;
+            storedNextNode = nodesForward.next;
+            nodesForward.next = nodesBackward;
+            nodesBackward = nodesForward;
+            nodesForward = storedNextNode;
+        }
+
+        // 3. check for odd case
+        boolean isOdd = (nodesCount & 1) != 0 ? true : false;
+
+        if (isOdd) {
+            nodesForward = nodesForward.next;
+        }
+
+        // 4. check if it is a palindrome
+
+        while (nodesForward != null) {
+            if (nodesForward.val != nodesBackward.val) {
+                return false;
+            }
+            nodesForward = nodesForward.next;
+            nodesBackward = nodesBackward.next;
+        }
+
+        return true;
+    }
+}
