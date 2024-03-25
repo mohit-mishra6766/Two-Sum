@@ -1,0 +1,14 @@
+class Solution {
+
+    public List<Integer> findDuplicates(int[] nums) {
+        int[] duplicates = new int[nums.length + 1]; // + 1 to equalise index & length, could also subtract one down at num index
+        List<Integer> list = new ArrayList<>();
+        for(int num : nums){
+            duplicates[num]++;
+            if(duplicates[num] > 1){
+                list.add(num);
+            }
+        }
+        return list;
+    }
+}
